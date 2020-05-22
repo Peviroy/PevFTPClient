@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style.css') }}"
+		/>
+	</head>
+	<body>
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+				>&times;</a
+			>
+			<a href="#">FTPClient</a>
+			<a href="#" class="sid">魏俊锋 41724271</a>
+			<a href="#" class="sid">吴焜 41724314</a>
+			<a href="#" class="sid">张子昂 41724138</a>
+		</div>
+
+		<div id="Main">
+			<div id="Title">
+				<span
+					style="font-size: 20px; cursor: pointer;"
+					onclick="openNav()"
+					>&#9776; About</span
+				>
+				<h1>PevFTPClient</h1>
+				<h4><b>HOST: {{ host }}</b>, <b>PORT: {{ port }}</b></h4>
+			</div>
+
+			<div class="container">
+				<h2>PevFTPClient [{{ username }}]></h2>
+				<form method="POST">
+					<div class="input-field">
+						<input
+							type="text"
+							required="required"
+							name="query"
+							autofocus
+						/>
+						<label for="">Type in ftp command; "h" for help</label>
+						<span></span>
+					</div>
+					<input
+						type="submit"
+						value="Show Result"
+						class="btn"
+						onclick="TextAreagoEnd()"
+					/>
+				</form>
+			</div>
+
+			<div id="Output">
+				<h3>Output</h3>
+				<textarea id="content" readonly onfocus="TextAreagoEnd()">
+{{ text }}</textarea
+				>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			function TextAreagoEnd() {
+				var textArea = document.getElementById('content');
+				textArea.scrollTop = textArea.scrollHeight;
+			}
+			TextAreagoEnd();
+
+			/*Sidebar open --- sidebar width, main margin, backgoundcolor*/
+			function openNav() {
+				document.getElementById('mySidenav').style.width = '250px';
+				document.getElementById('Main').style.marginLeft = '250px';
+				document.body.style.backgroundColor = 'rgba(17, 17, 17, 0.8)';
+			}
+			function closeNav() {
+				document.getElementById('mySidenav').style.width = '0';
+				document.getElementById('Main').style.marginLeft = '0';
+				document.body.style.backgroundColor = 'rgba(17, 17, 17, 1)';
+			}
+		</script>
+	</body>
+</html>
