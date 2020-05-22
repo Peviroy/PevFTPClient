@@ -29,6 +29,7 @@ def dated_url_for(endpoint, **values):
         return url_for(endpoint, **values)
 
 
+
 """
 @description: Main page;
 @Note: To contact WEB with client service; we adopt an ugly method;
@@ -52,13 +53,18 @@ def my_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     if request.method == 'POST':
+        global FTPClient
         query = request.form['query']
-        # print(query)
-        FTPClient.run(query)
+        try:
+            FTPClient.run(query)
+        except Exception:
+            pass
         stdFile.seek(0)
         text = stdFile.read()
-        # print(stdFile)
+        print(str.strip(query))
         # print(text)
+        if query == "quit":
+            FTPClient = None
         return render_template('index.html', username="Peviroy", host="127.0.1.1", port=8899, text=text)
 
 

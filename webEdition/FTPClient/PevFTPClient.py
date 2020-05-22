@@ -222,7 +222,7 @@ class PevFTPclient:
     """
     @RedirectStdout
     def delete(self, path):
-        path = self.cleanQuery(path, 6)
+        path = self.cleanQuery(path, 2)
         self.sendCommand('DELE' + path)
         # print(self.readMultiline())
         if self.__isDeleteOK(self.readMultiline()):
